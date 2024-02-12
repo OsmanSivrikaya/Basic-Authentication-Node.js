@@ -2,7 +2,7 @@ const basicAuth = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (authHeader) {
-    console.log("authHeader:" + authHeader);
+    //Request ‘in Authorization başlığında ki ifade şu şekilde’dir. Basic YWRtaW46cGFzc3dvcmQ= yazılan middleware bu ifadeyi önce boşluk(“ “) dan ayırarak ikinci kısmı yani YWRtaW46cGFzc3dvcmQ= bu kodu alır. Sonra bunu base64 decode ederek admin:password ifadesini elde eder. Sonra bunu da “:” dan parçalar ve kullanıcı adı şifre değerini elde eder.
     const [username, password] = Buffer.from(authHeader.split(" ")[1], "base64")
       .toString()
       .split(":");
